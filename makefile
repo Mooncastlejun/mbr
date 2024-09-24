@@ -1,6 +1,6 @@
 # Compiler and flags
-CC = gcc
-CFLAGS = -Wall -Wextra -O2
+CXX = clang++
+CXXFLAGS += -fPIC
 LDFLAGS = -shared
 
 # Object files
@@ -18,7 +18,7 @@ all: $(EXECUTABLE) $(STATIC_LIB) $(SHARED_LIB)
 
 # Compile the executable
 $(EXECUTABLE): $(OBJ_FILES)
-	$(CC) $(OBJ_FILES) -o $(EXECUTABLE)
+	$(CXX) $(OBJ_FILES) -o $(EXECUTABLE) $(CXXFLAGS)
 
 # Create static library
 $(STATIC_LIB): $(OBJ_FILES)
@@ -26,11 +26,11 @@ $(STATIC_LIB): $(OBJ_FILES)
 
 # Create shared library
 $(SHARED_LIB): $(OBJ_FILES)
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CXX) $(LDFLAGS) -o $@ $^
 
 # Compile object files
 mbr.o: mbr.c mbr.h
-	$(CC) $(CFLAGS) -c mbr.c -o mbr.o
+	$(CXX) $(CXXFLAGS) -c mbr.c -o mbr.o
 
 # Clean up
 clean:
