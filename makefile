@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = clang++
-CXXFLAGS += -fPIC -g0  # -g0 플래그 추가
+CXXFLAGS += -fPIC
 LDFLAGS = -shared
 
 # Object files
@@ -17,8 +17,8 @@ EXECUTABLE = mbr_test
 all: $(EXECUTABLE) $(STATIC_LIB) $(SHARED_LIB)
 
 # Compile the executable
-$(EXECUTABLE): $(OBJ_FILES)
-	$(CXX) $(OBJ_FILES) -o $(EXECUTABLE) $(CXXFLAGS)
+$(EXECUTABLE): $(OBJ_FILES) example_fuzzer.c
+	$(CXX) $(OBJ_FILES) example_fuzzer.c -o $(EXECUTABLE) $(CXXFLAGS) -fsanitize=fuzzer
 
 # Create static library
 $(STATIC_LIB): $(OBJ_FILES)
