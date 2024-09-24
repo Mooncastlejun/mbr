@@ -3,15 +3,6 @@
 #include <stdint.h>
 #include "mbr.h"
 
-typedef struct P_table {
-    uint8_t active;
-    uint8_t CHS_Address1[3];
-    uint8_t Partition_Type;
-    uint8_t CHS_Address2[3];
-    uint32_t LBA_Address;
-    uint32_t Size;
-}PARTITION;
-
 void print_partition(PARTITION* info, uint32_t base_lba) {
     uint32_t abs_lba = base_lba + info->LBA_Address;
     if (info->Partition_Type == 0x07) {
