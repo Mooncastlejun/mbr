@@ -6,13 +6,14 @@
 
 // 파티션 테이블 구조체 정의
 typedef struct P_table {
-    uint8_t active;
-    uint8_t CHS_Address1[3];
-    uint8_t Partition_Type;
-    uint8_t CHS_Address2[3];
-    uint32_t LBA_Address;
-    uint32_t Size;
+    uint8_t Status;              // 활성 상태 (0x80이면 활성 파티션)
+    uint8_t Start_CHS[3];        // 시작 CHS 주소
+    uint8_t Partition_Type;      // 파티션 타입 (0x07: NTFS, 0x0B/0x0C: FAT32, 0x05: EBR)
+    uint8_t End_CHS[3];          // 종료 CHS 주소
+    uint32_t LBA_Address;        // LBA 시작 주소
+    uint32_t Size;               // 파티션 크기 (섹터 수)
 } PARTITION;
+
 
 // 파티션 정보를 출력하는 함수 선언
 void print_partition(PARTITION* info, uint32_t base_lba);
