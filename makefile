@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = clang++
-CXXFLAGS += -fPIC
+CXXFLAGS += -fPIC -g0  # -g0 플래그 추가
 LDFLAGS = -shared
 
 # Object files
@@ -36,4 +36,4 @@ mbr.o: mbr.c mbr.h
 clean:
 	rm -f $(EXECUTABLE) $(OBJ_FILES) $(STATIC_LIB) $(SHARED_LIB)
 
-.PHONY: all clean
+.PHONY: all clean 
