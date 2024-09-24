@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "mbr.h"
+
 // 1. 파티션 유형을 텍스트로 변환하는 함수
 const char* partition_type_to_string(uint8_t type) {
     switch (type) {
@@ -98,7 +99,7 @@ void process_ebr(FILE* fp, uint32_t base_lba, uint32_t ebr_lba) {
     }
 }
 
-int main(int argc, char* argv[]) {
+/*int main(int argc, char* argv[]) {
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <image file>\n", argv[0]);
         return 1;
@@ -140,4 +141,4 @@ int main(int argc, char* argv[]) {
 
     fclose(fp);
     return 0;
-}
+}*/
