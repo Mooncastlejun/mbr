@@ -19,5 +19,10 @@ void print_partition(PARTITION* info, uint32_t base_lba);
 
 // EBR(Extended Boot Record)를 처리하는 함수 선언
 void process_ebr(FILE* fp, uint32_t base_lba, uint32_t ebr_lba);
-
+// 함수 정의
+const char* partition_type_to_string(uint8_t type);
+double partition_size_in_gb(uint32_t size_in_sectors);
+void print_boot_code(const uint8_t* mbr);
+void check_active_partition(PARTITION* partition);
+void list_ebr_chain(FILE* fp, uint32_t base_lba, uint32_t ebr_lba);
 #endif // MBR_H
